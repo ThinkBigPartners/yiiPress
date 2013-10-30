@@ -4,7 +4,6 @@ return CMap::mergeArray(
 	array(
 		'modules'=>array(
 			// uncomment the following to enable the Gii tool
-			
 			'gii'=>array(
 				'class'=>'system.gii.GiiModule',
 				'password'=>'abc',
@@ -15,7 +14,8 @@ return CMap::mergeArray(
 		),
 		'components'=>array(
 			'db'=>array(
-				'connectionString' => 'mysql:host=localhost;dbname=bodeefit_next',
+				//'connectionString' => 'mysql:host=localhost;dbname=roverrain',
+				'connectionString' => 'mysql:host=localhost;dbname=roverrain',
 				'emulatePrepare' => true,
 				'username' => 'root',
 				'password' => 'abc',

@@ -26,7 +26,7 @@ if (array_key_exists($request_uri, $redirects)) {
 define('WP_USE_THEMES', true);
 $wp_did_header = true;
 require_once('wp/wp-load.php');
-$yii=dirname(__FILE__).'/framework/yii.php';
+$yii=dirname(__FILE__).'/vendor/yiisoft/yii/framework/yii.php';
 
 $isProduction = false;
 if (strstr ($_SERVER['HTTP_HOST'], 'localhost') !== false || strstr ($_SERVER['HTTP_HOST'], '.local') !== false) {

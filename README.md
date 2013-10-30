@@ -1,5 +1,9 @@
-Master-Cash-Rent
+yiiPress
 ================
+
+A mashup of Yii Web Application Framework and WordPress Content Management System.   
+   
+This allows us to use a WordPress theme to wrap our Yii Application and when Yii doesn't have a route registered and 404s, it falls back to WordPress and WordPress tries to load content for the given URL.
 
 Repository for RoverRain Cash Rent Platfrom
 

@@ -25,3 +25,6 @@ Once Composer is installed, navigate to the root and run:
 
 This will install Yii and Wordpress among other dependencies.   
    
+
+We should try VERY hard to manage dependecies with Composer and not include them in the repository.   
+   

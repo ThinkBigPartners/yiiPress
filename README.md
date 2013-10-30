@@ -31,13 +31,14 @@ Once everything is installed, hit the web server. It will walk you through confi
    
     DB_USER: root
     DB_PASSWORD: abc   
-		DB_HOST: localhost   
-		
+    DB_HOST: localhost   
+   
 If these settings don't work for you, you can change them in wp/wp-config.php.
 
 You will next need to configure Yii, the following configuration files exist:   
    
     protected/config/main.php //Global config regardless of environment
-		protected/config/main_local.php //Local config such as local DB settings turn on gii
-		protected/config/main_prod.php //Production config
-		
+    protected/config/main_local.php //Local config such as local DB settings turn on gii
+    protected/config/main_prod.php //Production config
+   
+   

@@ -26,4 +26,18 @@ Once Composer is installed, navigate to the root and run:
     composer install   
 
 This will install Yii and Wordpress among other dependencies.   
-      
+   
+Once everything is installed, hit the web server. It will walk you through configuring WordPress. The default configuration uses the following credentials (changing values WordPress Web Configurator will not change them).
+   
+    DB_USER: root
+    DB_PASSWORD: abc   
+		DB_HOST: localhost   
+		
+If these settings don't work for you, you can change them in wp/wp-config.php.
+
+You will next need to configure Yii, the following configuration files exist:   
+   
+    protected/config/main.php //Global config regardless of environment
+		protected/config/main_local.php //Local config such as local DB settings turn on gii
+		protected/config/main_prod.php //Production config
+		

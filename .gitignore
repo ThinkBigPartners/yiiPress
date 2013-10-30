@@ -1,4 +1,8 @@
 /vendor/*
 /wp/wp-admin/*
 /wp/wp-includes/*
+/wp/*
+
+
+!/wp/wp-content/
 !/wp/wp-config.php

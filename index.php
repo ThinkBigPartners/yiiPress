@@ -1,0 +1,55 @@
+<?php
+
+require 'vendor/autoload.php';
+$redirects = require_once(dirname(__FILE__).'/protected/config/redirects.php');
+$request_uri = $_SERVER['REQUEST_URI'];
+
+if (array_key_exists($request_uri, $redirects)) {
+	$redirect = $redirects[$request_uri];
+	if ($redirect['type'] == 301) {
+		header("HTTP/1.1 301 Moved Permanently"); 
+	}
+	if (isset($redirect['url']) && $redirect['url'] != "") {
+		header("Location: " . $redirect['url']); 
+	}
+	else {
+		$baseURL = "http://";
+		if ($_SERVER['HTTPS']) {
+			$baseURL = "https://";
+		}
+		$baseURL .= $_SERVER['SERVER_NAME'];
+		header("Location: " . $baseURL . $redirect['path']);
+	}
+	die();
+}
+
+define('WP_USE_THEMES', true);
+$wp_did_header = true;
+require_once('wp/wp-load.php');
+$yii=dirname(__FILE__).'/framework/yii.php';
+
+$isProduction = false;
+if (strstr ($_SERVER['HTTP_HOST'], 'localhost') !== false || strstr ($_SERVER['HTTP_HOST'], '.local') !== false) {
+	$env_config = dirname(__FILE__).'/protected/config/main_local.php';
+} elseif (strstr($_SERVER['HTTP_HOST'], 'staging') !== false) {
+	$env_config = dirname(__FILE__).'/protected/config/main_staging.php';
+} elseif (strstr($_SERVER['HTTP_HOST'], 'dev') !== false) {
+	$env_config = dirname(__FILE__).'/protected/config/main_dev.php';
+} else {
+	$env_config = dirname(__FILE__).'/protected/config/main_prod.php';
+	$isProduction = true;
+}
+ 
+require_once(dirname(__FILE__) . '/protected/components/ExceptionHandler.php');
+$router = new ExceptionHandler();
+
+if (!$isProduction) {
+	// remove the following lines when in production mode
+	defined('YII_DEBUG') or define('YII_DEBUG',true);
+	// specify how many levels of call stack should be shown in each log message
+	defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
+}
+
+require_once($yii);
+
+Yii::createWebApplication($env_config)->run();

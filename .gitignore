@@ -1,1 +1,4 @@
 /vendor/*
+/wp/wp-admin/*
+/wp/wp-includes/*
+!/wp/wp-config.php

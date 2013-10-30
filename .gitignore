@@ -2,7 +2,7 @@
 /wp/wp-admin/*
 /wp/wp-includes/*
 /wp/*
-
+protected/runtime/application.log
 
 !/wp/wp-content/
 !/wp/wp-config.php

@@ -1,6 +1,6 @@
 <?php
 
-class SiteController extends Controller
+class SiteController extends WPController
 {
 	/**
 	 * Declares class-based actions.

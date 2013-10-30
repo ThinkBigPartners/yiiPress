@@ -1,0 +1,13 @@
+{
+	"name": "roverrain",
+	"version": "0.1.0",
+	"dependencies" : {
+		"bower" : "*"
+	},
+	"devDependencies": {
+		"grunt": "~0.4.1",
+		"grunt-reload": "git://github.com/webxl/grunt-reload.git",
+   		"grunt-contrib-watch" : "",
+    	"grunt-contrib-connect" : ""
+	}
+}

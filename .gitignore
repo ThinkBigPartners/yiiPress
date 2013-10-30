@@ -1,4 +1,7 @@
 /vendor/*
+/components/*
+/bower_components/*
+/node_modules/*
 /wp/wp-admin/*
 /wp/wp-includes/*
 /wp/*

@@ -42,3 +42,7 @@ You will next need to configure Yii, the following configuration files exist:
     protected/config/main_prod.php //Production config
    
    
+Use Case
+===========
+   
+We maintain a number of projects where the client isn't highly technical, but wants to be able to make updates to the content porition of the website. Since WordPress does this really well, we knew we wanted to use it. We use Yii extensively so a solution to use Yii and Wordpress together was required. This is that solution.

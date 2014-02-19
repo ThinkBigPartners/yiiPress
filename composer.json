@@ -14,6 +14,10 @@
           "fancyguy/webroot-installer": "1.0.0"
         }
       }
+    },
+    {
+      "type":"composer",
+      "url":"http://wpackagist.org"
     }
   ],
   "require": {

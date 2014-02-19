@@ -27,6 +27,7 @@ return array(
 			'ipFilters'=>array('127.0.0.1','::1'),
 		),
 		*/
+		'api'
 	),
 
 	// application components
@@ -41,6 +42,7 @@ return array(
 			'class' => 'HyphenUrlManager',
 			'urlSuffix' => '.html',
 			'rules'=>array(
+				array('api/default', 'pattern' => 'api'),
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',

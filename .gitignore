@@ -4,6 +4,7 @@
 /node_modules/*
 /wp/wp-admin/*
 /wp/wp-includes/*
+/wp/wp-content/*
 /wp/*
 protected/runtime/application.log
 

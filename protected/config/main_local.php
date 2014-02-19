@@ -14,8 +14,7 @@ return CMap::mergeArray(
 		),
 		'components'=>array(
 			'db'=>array(
-				//'connectionString' => 'mysql:host=localhost;dbname=roverrain',
-				'connectionString' => 'mysql:host=localhost;dbname=roverrain',
+				'connectionString' => 'mysql:host=localhost;dbname=yiiPress',
 				'emulatePrepare' => true,
 				'username' => 'root',
 				'password' => 'abc',

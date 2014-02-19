@@ -1,5 +1,4 @@
 <?php
-
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
@@ -46,7 +45,6 @@ return array(
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 				'<controller:\w+>' => '<controller>/index',
-				'<action:\w+>' => 'site/<action>'
 			),
 			'showScriptName' => false
 		),
@@ -65,7 +63,7 @@ return array(
 		*/
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
-			'errorAction'=>'site/error',
+			'errorAction'=>'error/error',
 		),
 		'log'=>array(
 			'class'=>'CLogRouter',

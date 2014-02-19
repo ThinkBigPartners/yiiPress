@@ -1,10 +1,5 @@
 <?php
 
-define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp');
-define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME']);
-define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content');
-define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content');
-
 
 require 'vendor/autoload.php';
 $redirects = require_once(dirname(__FILE__).'/protected/config/redirects.php');
@@ -32,12 +27,6 @@ $yii=dirname(__FILE__).'/vendor/yiisoft/yii/framework/yii.php';
 
 $isProduction = false;
 if (strstr ($_SERVER['HTTP_HOST'], 'localhost') !== false || strstr ($_SERVER['HTTP_HOST'], '.local') !== false) {
-	define('DB_NAME', 'yiiPress');
-	define('DB_USER', 'root');
-	define('DB_PASSWORD', 'abc');
-	define('DB_HOST', 'localhost');
-	define('DB_CHARSET', 'utf8');
-	define('DB_COLLATE', '');
 	$env_config = dirname(__FILE__).'/protected/config/main_local.php';
 } elseif (strstr($_SERVER['HTTP_HOST'], 'staging') !== false) {
 	$env_config = dirname(__FILE__).'/protected/config/main_staging.php';

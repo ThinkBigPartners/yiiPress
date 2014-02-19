@@ -14,6 +14,35 @@
  * @package WordPress
  */
 
+define('WP_SITEURL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp');
+define('WP_HOME',    'http://' . $_SERVER['SERVER_NAME']);
+define('WP_CONTENT_DIR', $_SERVER['DOCUMENT_ROOT'] . '/wp-content');
+define('WP_CONTENT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content');
+
+if ($_SERVER['REMOTE_ADDR']=='127.0.0.1') {
+    define('WP_ENV', 'development');
+} else {
+    define('WP_ENV', 'production');
+}
+
+if (WP_ENV == 'development') {
+	define('DB_NAME', 'yiiPress');
+	define('DB_USER', 'root');
+	define('DB_PASSWORD', 'abc');
+	define('DB_HOST', 'localhost');
+} else {
+	define('DB_NAME', '');
+	define('DB_USER', '');
+	define('DB_PASSWORD', '');
+	define('DB_HOST', '');
+}
+define('DB_CHARSET', 'utf8');
+define('DB_COLLATE', '');
+
+
+
+
+
 /**#@+
  * Authentication Unique Keys and Salts.
  *

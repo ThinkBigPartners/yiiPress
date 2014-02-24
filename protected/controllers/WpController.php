@@ -3,8 +3,8 @@
 class WpController extends WordPressController
 {
     public function actionIndex() {
-        
-        //$this->layout = false; // note that we disable the layout
+
+        $this->layout = false; // note that we disable the layout
         try {
             $this->render('index');
             Yii::app()->end();

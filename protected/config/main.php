@@ -43,8 +43,21 @@ return array(
 			'urlSuffix' => '.html',
 			'rules'=>array(
 				array('api/default', 'pattern' => 'api'),
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+				array('api/user/login', 'pattern' => 'api/user/login'),
+				array('api/user/signup', 'pattern' => 'api/user/signup'),
+				array('api/user/update', 'pattern' => 'api/user/<id:[\w-]+>', 'verb'=>'PUT'),
+				array('api/<controller>/index', 'pattern'=>'api/<controller:\w+>'),
+				array('api/<controller>/view', 'pattern'=>'api/<controller:\w+>/<id:[\w-]+>', 'verb'=>'GET'),
+				array('api/<controller>/create', 'pattern'=>'api/<controller:\w+>/<id:[\w-]+>', 'verb'=>'POST'),
+				array('api/<controller>/update', 'pattern'=>'api/<controller:\w+>/<id:[\w-]+>', 'verb'=>'PUT'),
+				array('api/<controller>/destroy', 'pattern'=>'api/<controller:\w+>/<id:[\w-]+>', 'verb'=>'DELETE'),
+				array('api/<controller>/<action>', 'pattern'=>'api/<controller:\w+>/<id:[\w-]+>/<action:\w+>'),
+				array('api/<controller>/<action>', 'pattern'=>'api/<controller:\w+>/<action:\w+>'),
+				array('user/signup', 'pattern' => 'signup'),
+				array('user/login', 'pattern' => 'login'),
+				array('user/logout', 'pattern' => 'logout'),
+				'<controller:\w+>/<id:[\w-]+>'=>'<controller>/view',
+				'<controller:\w+>/<id:[\w-]+>/<action:\w+>/'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 				'<controller:\w+>' => '<controller>/index',
 			),
@@ -89,5 +102,6 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+		'apiSecret' => 'SUPERSECRETAPIKEY'
 	),
 );

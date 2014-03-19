@@ -20,6 +20,9 @@ return CMap::mergeArray(
 				'password' => 'abc',
 				'charset' => 'utf8',
 			)
+		),
+		'params' => array(
+
 		)
 	)
 );

@@ -3581,7 +3581,6 @@ a.post-thumbnail:hover {
 	}
 
 	.site:before {
-		background-color: #000;
 		content: "";
 		display: block;
 		height: 100%;
@@ -3594,7 +3593,6 @@ a.post-thumbnail:hover {
 	}
 
 	#secondary {
-		background-color: transparent;
 		border: 0;
 		clear: none;
 		float: left;

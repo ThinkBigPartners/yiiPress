@@ -56,6 +56,8 @@ return array(
 				array('user/signup', 'pattern' => 'signup'),
 				array('user/login', 'pattern' => 'login'),
 				array('user/logout', 'pattern' => 'logout'),
+				array('user/forgotPassword', 'pattern' => 'forgot-password'),
+				array('user/resetPassword', 'pattern' => 'reset-password'),
 				'<controller:\w+>/<id:[\w-]+>'=>'<controller>/view',
 				'<controller:\w+>/<id:[\w-]+>/<action:\w+>/'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',

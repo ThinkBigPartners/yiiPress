@@ -65,6 +65,59 @@ class UserController extends WordPressController
 
     }
 
+    public function actionForgotPassword() {
+        if( isset( Yii::app()->user->id ) ) {
+            $this->redirect( '/' );
+        }
+        
+        $model = new ForgotPasswordForm();
+        
+        // if it is ajax validation request
+        if( isset( $_POST ['ajax'] ) && $_POST ['ajax'] === 'forgot-password-form' ) {
+            echo CActiveForm::validate( $model );
+            Yii::app()->end();
+        }
+        
+        // collect user input data
+        if( isset( $_POST ['ForgotPasswordForm'] ) ) {
+            $model->attributes = $_POST ['ForgotPasswordForm'];
+            // validate user input and redirect to the previous page if valid
+            if( $model->validate() && $model->login() )
+                $this->redirect( Yii::app()->user->returnUrl );
+        }
+        // display the login form
+        $this->render( 'forgot-password', array (
+                'model' => $model 
+        ) );
+    }
+
+    //Action to reset password after doing forgot password
+    public function actionResetPassword() {
+        if( isset( Yii::app()->user->id ) ) {
+            $this->redirect( '/' );
+        }
+        
+        $model = new ResetPasswordForm();
+        
+        // if it is ajax validation request
+        if( isset( $_POST ['ajax'] ) && $_POST ['ajax'] === 'reset-password-form' ) {
+            echo CActiveForm::validate( $model );
+            Yii::app()->end();
+        }
+        
+        // collect user input data
+        if( isset( $_POST ['ResetPasswordForm'] ) ) {
+            $model->attributes = $_POST ['ResetPasswordForm'];
+            // validate user input and redirect to the previous page if valid
+            if( $model->validate() && $model->login() )
+                $this->redirect( Yii::app()->user->returnUrl );
+        }
+        // display the login form
+        $this->render( 'reset-password', array (
+                'model' => $model 
+        ) );
+    }
+
     public function actionLogout() {
         Yii::app()->user->logout();
         $this->redirect( Yii::app()->homeUrl );

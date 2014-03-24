@@ -228,6 +228,48 @@ class TBUser extends CActiveRecord {
         $hmac = hash_hmac('sha256', $hmac, Yii::app()->params['apiSecret']);
         return base64_encode($uuid);
     }
+
+    public function sendForgotPasswordEmail() {
+
+        $mandrill = new Mandrill('sl_DRpyMpBELLq0ECOUCRw');
+
+        $link = $this->generateForgotPasswordLink();
+
+        $message = array(
+            'text' => 'Click this link to reset your password.' . "\n\n" . $link,
+            'subject' => 'Reset your password',
+            'from_email' => Yii::app()->params['email_from_email'],
+            'from_name' => Yii::app()->params['email_from_name'],
+            'to' => array(
+                array(
+                    'email' => $this->email,
+                    'name' => $this->fullName,
+                    'type' => 'to'
+                )
+            ),
+            'tags' => array('password-resets'),
+            'recipient_metadata' => array(
+                array(
+                    'rcpt' => $this->email,
+                    'values' => array('user_id' => $this->id)
+                )
+            )
+        );
+
+        $result = $mandrill->messages->send($message);
+
+        return $result;
+
+    }
+
+    public function generateForgotPasswordLink() {
+        if (!$this->forgotPasswordToken) {
+            $this->forgotPasswordToken = TBUser::generateToken();
+            $this->save();
+        }
+
+        return Yii::app()->createAbsoluteUrl('reset-password',array('id'=>$this->id, 'token' => $this->forgotPasswordToken));
+    }
     
     /**
      * update password by userId

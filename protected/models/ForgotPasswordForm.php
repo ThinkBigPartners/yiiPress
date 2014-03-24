@@ -45,9 +45,11 @@ class ForgotPasswordForm extends CFormModel {
     }
 
     /**
-     * sign up
+     * forgot Password
      */
     public function forgotPassword() {
+        $user = TBUser::model()->find("email=:email", array(":email" => strtolower($this->email)));
 
+        return $user->sendForgotPasswordEmail();
     }
 }

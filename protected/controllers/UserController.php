@@ -82,7 +82,7 @@ class UserController extends WordPressController
         if( isset( $_POST ['ForgotPasswordForm'] ) ) {
             $model->attributes = $_POST ['ForgotPasswordForm'];
             // validate user input and redirect to the previous page if valid
-            if( $model->validate() && $model->login() )
+            if( $model->validate() && $model->forgotPassword() )
                 $this->redirect( Yii::app()->user->returnUrl );
         }
         // display the login form

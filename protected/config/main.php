@@ -104,6 +104,8 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
-		'apiSecret' => 'SUPERSECRETAPIKEY'
+		'apiSecret' => 'SUPERSECRETAPIKEY',
+		'email_from_email' => 'team@pitchcastr.com',
+		'email_from_name' => 'Team PitchCastr'
 	),
 );

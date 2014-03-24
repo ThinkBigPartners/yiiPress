@@ -109,7 +109,7 @@ class TBUser extends CActiveRecord {
      */
     public static function generateHash($password) {
         if( defined( "CRYPT_BLOWFISH" ) && CRYPT_BLOWFISH ) {
-            $salt = '$2y$11$' + substr( md5( uniqid( rand(), true ) ), 0, 22 );
+            $salt = '$2a$11$' . substr( md5( uniqid( rand(), true ) ), 0, 22 );
             return crypt( $password, $salt );
         }
     }
@@ -121,7 +121,7 @@ class TBUser extends CActiveRecord {
      * @return boolean
      */
     public static function verifyPassword($password, $hashedPassword) {
-        return crypt( $password, $hashedPassword ) == $hashedPassword;
+        return crypt( $password, $hashedPassword ) === $hashedPassword;
     }
 
     /**

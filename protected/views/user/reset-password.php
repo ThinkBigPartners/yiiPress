@@ -46,6 +46,9 @@ $this->pageTitle=Yii::app()->name . ' - Reset Password';
                 </div>
                 <div class="row reset-password-field-field">
                     <div class="col-md-12 col-sm-12">
+                        <?php echo $form->hiddenField($model,'userId'); ?>
+                        <?php echo $form->hiddenField($model,'forgotPasswordToken'); ?>
+
                         <button type="submit" class="btn btn-block rr-btn-green">Reset Password</button>
                     </div>
                 </div>

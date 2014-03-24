@@ -53,15 +53,30 @@ class ResetPasswordForm extends CFormModel {
      */
     public function attributeLabels() {
         return array (
-                'password' => 'Password',
-                'confirmPassword' => 'Confirm Password',
+            'password' => 'Password',
+            'confirmPassword' => 'Confirm Password',
         );
     }
 
     /**
-     * sign up
+     * reset Password
      */
     public function resetPassword() {
+        $user = TBUser::model()->findByPk($this->userId);
 
+        if ($user->forgotPasswordAuthenticate($this->forgotPasswordToken)) {
+            $user->password = TBUser::generateHash($this->password);
+            $user->forgotPasswordToken = TBUser::generateToken();
+            $user->save();
+
+            $identity = new TBUserIdentity( $user->email, $user->password );
+            $identity->authenticate();
+
+            Yii::app()->user->login( $identity, (60*60*24*7) );
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

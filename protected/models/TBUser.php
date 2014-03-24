@@ -215,6 +215,16 @@ class TBUser extends CActiveRecord {
         return !$this->authError;
     }
 
+    public function forgotPasswordAuthenticate($forgotPasswordToken) {
+        if ($this->forgotPasswordToken !== $forgotPasswordToken) {
+            $this->authError = self::ERROR_PASSWORD_INVALID;
+        }
+        else {
+            $this->authError = self::ERROR_NONE;
+        }
+        return !$this->authError;
+    }
+
     public function generateForgotPasswordToken() {
         $this->forgotPasswordToken = TBUser::generateToken();
     }

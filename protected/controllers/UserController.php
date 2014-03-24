@@ -96,6 +96,18 @@ class UserController extends WordPressController
         if( isset( Yii::app()->user->id ) ) {
             $this->redirect( '/' );
         }
+
+        if (!$_GET['id'] || !$_GET['token']) {
+            $this->redirect( '/' );
+        }
+
+
+        $user = TBUser::model()->findByPk($_GET['id']);
+
+        if (!$user->forgotPasswordAuthenticate($_GET['token'])) {
+            $this->redirect( '/' );
+        }
+
         
         $model = new ResetPasswordForm();
         
@@ -109,12 +121,17 @@ class UserController extends WordPressController
         if( isset( $_POST ['ResetPasswordForm'] ) ) {
             $model->attributes = $_POST ['ResetPasswordForm'];
             // validate user input and redirect to the previous page if valid
-            if( $model->validate() && $model->login() )
+            if( $model->validate() && $model->resetPassword() ) {
                 $this->redirect( Yii::app()->user->returnUrl );
+            }
         }
         // display the login form
+        $model->userId = $_GET['id'];
+        $model->forgotPasswordToken = $_GET['token'];
         $this->render( 'reset-password', array (
-                'model' => $model 
+                'model' => $model,
+                'userId' => $user->id,
+                'forgotPasswordToken' => $_GET['token']
         ) );
     }
 

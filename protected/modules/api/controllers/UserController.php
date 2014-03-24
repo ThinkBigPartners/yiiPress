@@ -56,7 +56,43 @@ class UserController extends ApiController {
 	}
 
 	public function actionUpdate() {
+		$data = json_decode(file_get_contents('php://input'), true);
 
+		$id = $_GET['id'];
+		if ($_GET && $_GET['apiToken']) {
+			$apiToken = $_GET['apiToken'];
+		}
+
+		if ($data && $data['apiToken']) {
+			$apiToken = $data['apiToken'];
+		}
+		
+		$user = TBUser::model()->findByPk($id);
+
+		if ($user && $user->apiAuthenticate($apiToken)) {
+			if ( $data['password'] && $data['newPassword'] && !$user->authenticate($data['password'])) {
+				$this->sendResponse(400, array('errors' => array('password' => 'Invalid password')));
+			}
+			else {
+				if ($data['password'] && $data['newPassword'] && $apiToken && $user->authenticate($data['password']) && $user->apiAuthenticate($apiToken)) {
+					$user->attributes = $data;
+					$user->password = User::generateHash($data['newPassword']);
+				}
+				else {
+					unset($data['password']);
+					unset($data['newPassword']);
+					$user->attributes = $data;
+				}
+				$user->save();
+				$this->sendResponse(200, $user->getAPIAttributes());
+			}
+		}
+		else if (!$user) {
+			$this->sendResponse(404);
+		}
+		else {
+			$this->sendResponse(400, $user->getAPIAttributes());
+		}
 	}
 
 	public function actionDestroy() {

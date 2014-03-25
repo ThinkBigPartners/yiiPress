@@ -241,15 +241,15 @@ class TBUser extends CActiveRecord {
 
     public function sendForgotPasswordEmail() {
 
-        $mandrill = new Mandrill('sl_DRpyMpBELLq0ECOUCRw');
+        $mandrill = new Mandrill(Yii::app()->params['mandrillAPIKey']);
 
         $link = $this->generateForgotPasswordLink();
 
         $message = array(
             'text' => 'Click this link to reset your password.' . "\n\n" . $link,
             'subject' => 'Reset your password',
-            'from_email' => Yii::app()->params['email_from_email'],
-            'from_name' => Yii::app()->params['email_from_name'],
+            'from_email' => Yii::app()->params['emailFromEmail'],
+            'from_name' => Yii::app()->params['emailFromName'],
             'to' => array(
                 array(
                     'email' => $this->email,

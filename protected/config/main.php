@@ -105,7 +105,8 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 		'apiSecret' => 'SUPERSECRETAPIKEY',
-		'email_from_email' => 'team@pitchcastr.com',
-		'email_from_name' => 'Team PitchCastr'
+		'emailFromEmail' => 'team@pitchcastr.com',
+		'emailFromName' => 'Team PitchCastr',
+		'mandrilAPIKey' => 'sl_DRpyMpBELLq0ECOUCRw'
 	),
 );
